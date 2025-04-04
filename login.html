@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .login-form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      .login-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .login-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .login-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .login-form button:hover {
+        background-color: #218838;
+      }
+      .message {
+        margin-top: 15px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="login-form">
+      <h2>تسجيل الدخول</h2>
+      <form id="loginForm">
+        <label for="username">اسم المستخدم:</label>
+        <input type="text" id="username" name="username" required />
+        <br />
+        <label for="password">كلمة السر:</label>
+        <input type="password" id="password" name="password" required />
+        <br />
+        <button type="submit">تسجيل الدخول</button>
+      </form>
+    </div>
+    <script src="./assets/js/sweetalert2.min.js"></script>
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // منع إعادة تحميل الصفحة
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          fetch("http://localhost/api/login.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status === "success") {
+                const user = data.user; // جميع بيانات المستخدم
+                // console.log("بيانات المستخدم:", user);
+                sessionStorage.setItem("user", JSON.stringify(user));
+
+                // توجيه المستخدم إلى الصفحة الرئيسية
+                window.location.href = "tsting.html";
+              } else {
+                // alert(data.message);
+                Swal.fire("خطأ!", `${data.message}`, "error");  
+              }
+            })
+            // .catch((error) => console.error("Error:", error));
+            Swal.fire("خطأ!", "حدث خطأ أثناء الاتصال بالخادم", "error");  
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./assets/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="./assets/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>Testing Api</title>
+  </head>
+
+  <body>
+    <script>  
+      window.onload = function () {  
+          const userString = sessionStorage.getItem("user");  
+          const user = userString ? JSON.parse(userString) : null;  
+  
+          if (!user) {  
+              window.location.href = "login.html";  
+              return;  
+          }  
+  
+          // Swal.fire("تم!", `  ${user.Name}  نجاح تسجيل الدخول مرحبا `, "success");  
+          // console.log("بيانات المستخدم المسترجعة:", user);  
+  // 
+          // عرض اسم المستخدم والبريد الإلكتروني  
+          document.getElementById("welcomeMessage").innerText = ` ${user.Name}!`; 
+      };  
+  
+      // دالة تسجيل الخروج  
+      function logout() {  
+          // حذف اسم المستخدم من sessionStorage  
+          sessionStorage.removeItem("user");  // استخدام sessionStorage  
+          // إعادة توجيه إلى صفحة تسجيل الدخول  
+          window.location.href = "login.html";  
+      }  
+  </script>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <div class="bg-white" id="sidebar-wrapper">
+        <div
+          class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"
+        >
+          Codersbite<i class="fas fa-user-secret me-2"></i>
+        </div>
+        <div class="list-group list-group-flush my-3">
+          <a
+            onclick="showPage('usersList')"
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text active"
+            ><i class="fa-solid fa-users"></i> إدارة  العملاء  
+          </a>
+          <a
+            onclick="showPage('addUserForm')"
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+            ><i class="fa-solid fa-user-plus"></i> إظافة عميل
+          </a>
+
+          <a
+          onclick="showPage('addEmployees')"
+          href="#"
+          class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+          ><i class="fa-solid fa-users-gear"></i>   الموظفين
+        </a>
+
+          <a
+            onclick="showPage('payment')"
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+            ><i class="fas fa-chart-line me-2"></i>   طباعة الفواتير <i class="fa-solid fa-print"></i> </a
+          >
+        
+          <a
+          onclick="showPage('add_payment')"
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+            ><i class="fas fa-shopping-cart me-2"></i>  إدارة الفواتير   </a
+          >
+          <a
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+            ><i class="fa-solid fa-hand-holding-dollar"></i> </i>   إضافة فاتورة    </a
+          >
+          <a
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+            ><i class="fas fa-comment-dots me-2"></i>Chat</a
+          >
+          <a
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent second-text fw-bold"
+            ><i class="fas fa-map-marker-alt me-2"></i>Outlet</a
+          >
+          <a
+            onclick="logout()"
+            href="#"
+            class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"
+            ><i class="fas fa-power-off me-2"></i>   تسجيل خروج   </a
+          >
+        </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4"
+        >
+          <div class="d-flex align-items-center">
+            <!-- <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i> -->
+            <h2 class="fs-2 m-0">Dashboard</h2>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <i class="fas fa-user me-2"></i>
+              <h6 id="welcomeMessage">مرحبًا!</h6>
+            </ul>
+          </div>
+        </nav>
+        <!-- !----------------*************************************************** -->
+        <div class="container-fluid px-4">
+          <div class="row g-3 my-2">
+            <div class="col-md-3">
+              <div
+                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded"
+              >
+                <div>
+                  <h3 class="fs-2">720</h3>
+                  <p class="fs-5">Products</p>
+                </div>
+                <i
+                  class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"
+                ></i>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div
+                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded"
+              >
+                <div>
+                  <h3 class="fs-2">4920</h3>
+                  <p class="fs-5">Sales</p>
+                </div>
+                <i
+                  class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"
+                ></i>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div
+                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded"
+              >
+                <div>
+                  <h3 class="fs-2">3899</h3>
+                  <p class="fs-5">Delivery</p>
+                </div>
+                <i
+                  class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"
+                ></i>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div
+                class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded"
+              >
+                <div>
+                  <h3 class="fs-2">%25</h3>
+                  <p class="fs-5">Increase</p>
+                </div>
+                <i
+                  class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <!-- ! ***************View user******************************************************* -->
+
+          <div class="row my-5 page" id="usersList" >
+            <h3 class="fs-4 mb-3"> جميع المستخدمين  </h3>
+            <div class="col">
+              <table class="table bg-white rounded shadow-sm table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" width="50">#</th>
+                    <th scope="col">اسم المستخدم</th>
+                    <th scope="col">رقم البطاقة</th>
+                    <th scope="col">رقم الخدمة</th>
+                    <th scope="col">المنطقة</th>
+                    <th scope="col">Process</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <!-- سيتم إضافة الصفوف هنا ديناميكيًا -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- ! **********************add users ************************************************ -->
+          <div
+            class="container text-center my-2 page"
+            id="addUserForm"
+            style="display: none"
+          >
+            <h3 class="fs-4 mb-3">مرحبا بكم في موقعي</h3>
+            <div class="my-5">
+              <div class="text-center my-5">
+                <form class="row g-3" id="userForm">
+                  <div class="col-md-6">
+                    <label  class="form-label">
+                      اسم العميل
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      class="form-control"
+                      id="inputEmail4"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label  class="form-label">
+                      رقم العداد
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="eId"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="areaId" class="form-label"> المنطقة </label>
+                    <select id="areaId" class="form-select">
+                      <option value="1">الحوبان</option>
+                      <option selected value="2">الهشمة </option>
+                      <option selected value="3">القاعدة</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="servessId" class="form-label"> الخدمة  </label>
+                    <select id="servessId" class="form-select">
+                      <option selected value="2">منزل</option>
+                      <option value="1">محل</option>
+                      <option value="3">...</option>
+                    </select>
+                  </div>
+          
+                  <div class="col-md-12">
+                    <label for="cardNo" class="form-label">  رقم البطاقة  </label>
+                    <input type="text" class="form-control" id="cardNo" />
+                  </div>
+          
+                  <div class="col-12"></div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary">حفظ</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ! ************************************************************************* -->
+        <!-- ! ---------------start add employed ----------------------------------------------------------------- -->
+        <div
+          class="container text-center my-2 page"
+          id="addEmployees"
+          style="display: block"
+        >
+          <h3 class="fs-4 mb-3">اضافة موظف</h3>
+          <div class="my-5">
+            <div class="text-center my-5">
+              <form class="row g-3" id="registerForm">
+                <div class="col-md-6">
+                  <label  class="form-label">
+                    اسم الموظف
+                  </label>
+                  <input
+                    id="username"
+                    type="text"
+                    class="form-control"
+                    id="inputEmail4"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label  class="form-label">
+                    رقم البطاقة
+                  </label>
+                  <input
+                    id="EmpCerd"
+                    type="text"
+                    class="form-control"
+                    id="inputPassword4"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="Normal" class="form-label"> المهنة </label>
+                  <select id="Normal" class="form-select">
+                    <option value="1">محاسب</option>
+                    <option selected value="2">عامل</option>
+                    <option selected value="3">فني</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="Manage" class="form-label"> الحالة </label>
+                  <select id="Manage" class="form-select">
+                    <option selected value="2">موظف</option>
+                    <option value="1">مدير</option>
+                    <option>...</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="Salary" class="form-label"> الراتب </label>
+                  <input type="text" class="form-control" id="Salary" />
+                </div>
+
+                <div class="col-12"></div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">حفظ</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <h3 class="fs-4 mb-3">جميع الموظفين</h3>
+          <div class="col">
+            <table class="table bg-white rounded shadow-sm table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" width="50">#</th>
+                  <th scope="col">اسم المستخدم</th>
+                  <th scope="col">رقم البطاقة</th>
+                  <th scope="col">رقم الخدمة</th>
+                  <th scope="col">الصلاحية</th>
+                  <th scope="col">Process</th>
+                </tr>
+              </thead>
+              <tbody id="Emp-table-body">
+                <!-- سيتم إضافة الصفوف هنا ديناميكيًا -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- ! ****************and  employed ********************************************************* -->
+
+        <div class="page" id="billList">
+          <div style="padding: 50px" id="billusers-card-body"></div>
+        </div>
+        <!-- !--------------view payment------------------------------------------- -->
+        <div class="page" id="payment">
+          <div style="padding: 50px" id="payment-card-body"></div>
+        </div>   
+           <!-- !--------------------------------------------------------- -->
+           <div
+           class="container text-center my-2 page"
+           id="add_payment"
+           style="display: block"
+         >
+           <h1>إدخال بيانات الدفع</h1>
+           <div class="my-5">
+             <div class="text-center my-5">
+               <form class="row g-3" id="paymentForm">
+                 <div class="col-md-6">
+                   <label for="user" class="form-label">اختر المستخدم:</label>
+                   <select id="user" class="form-select">
+                     <!-- <option>...</option> -->
+                   </select>
+                 </div>
+                 <div class="col-md-6">
+                   <label for="amount" class="form-label"> المبلغ المدفوع </label>
+                   <input type="number" class="form-control" id="amount" />
+                 </div>
+                 <div class="col-md-6">
+                   <label for="method" class="form-label"> طريقة الدفع :</label>
+                   <select id="method" class="form-select">
+                     <option value="كاش">كاش</option>
+                     <option value="تحويل بنكي">تحويل بنكي</option>
+                     <option value="بطاقة ائتمان">بطاقة ائتمان</option>
+                   </select>
+                 </div>
+                 <div class="col-md-6">
+                   <label for="payment_date" class="form-label">  تاريخ الدفع: </label>
+                   <input type="date" class="form-control" id="payment_date" />
+                 </div>
+     
+     
+                 <div class="col-12"></div>
+                 <div class="col-12">
+                   <button type="submit" class="btn btn-primary">حفظ</button>
+                 </div>
+               </form>
+             </div>
+           </div>
+         </div>
+
+      </div>
+
+      <!-- !--------------------------------------------------------- -->
+    </div>
+
+    <!-- !--------------------------------------------------------- -->
+
+    <!-- /#page-content-wrapper -->
+
+    <script src="./assets/js/jquery-3.6.0.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/sweetalert2.min.css" />
+    <script src="./assets/js/sweetalert2.min.js"></script>
+    <script>
+      function showPage(pageId) {
+        $(".page").hide(); // إخفاء جميع الصفحات
+        $("#" + pageId).show(); // إظهار الصفحة المطلوبة فقط
+      }
+    </script>
+    <script src="./assets/js/javascript.js"></script>
+  </body>
+</html>
